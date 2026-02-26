@@ -1,0 +1,14 @@
+# Build outputs
+*.exe
+*.obj
+*.pdb
+*.ilk
+*.log
+
+# Common IDE folders
+.vs/
+.vscode/
+
+# Misc
+*.tmp
+*.bak
