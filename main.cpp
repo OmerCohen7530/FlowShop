@@ -30,6 +30,20 @@ static void printNaiveResult(const flowshop_ext::NaiveResult& result, int U) {
     std::cout << std::endl;
 }
 
+static void printDPResult(const flowshop_ext::NaiveResult& result, int U) {
+    std::cout << "\n=== RESULTS ===" << std::endl;
+    std::cout << "Best Objective (DP): " << result.objective << std::endl;
+    std::cout << "Outsourcing cost: " << result.outsourcingCost << " / " << U << std::endl;
+
+    std::cout << "In-house order: ";
+    printJobList(result.inhouseOrder, "(none)", " -> ");
+    std::cout << std::endl;
+
+    std::cout << "Outsourced jobs: ";
+    printJobList(result.outsourced, "(none)", ", ");
+    std::cout << std::endl;
+}
+
 int main() {
     using flowshop::Job;
     const int m = 2; // מספר המכונות
@@ -49,6 +63,11 @@ int main() {
     flowshop_ext::NaiveResult naiveResult = flowshop_ext::solveNaiveDetailed(jobs, ui, m, U);
 
     printNaiveResult(naiveResult, U);
+
+    std::cout << "\nStarting DP Algorithm..." << std::endl;
+    flowshop_ext::NaiveResult dpResult = flowshop_ext::solveDP(jobs, ui, m, U);
+
+    printDPResult(dpResult, U);
 
     return 0;
 }
