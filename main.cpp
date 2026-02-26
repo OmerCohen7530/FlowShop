@@ -87,8 +87,8 @@ static void printInstanceSummary(const RandomInstance& inst) {
 static RandomInstance generateRandomInstance(std::mt19937& rng) {
     // Keep n small so that the naive 2^n enumeration is still reasonable.
     // Also keep U modest so DP doesn't explode in states.
-    std::uniform_int_distribution<int> distN(10, 100);
-    std::uniform_int_distribution<int> distM(5, 10);
+    std::uniform_int_distribution<int> distN(20, 25);
+    std::uniform_int_distribution<int> distM(4, 8);
     std::uniform_int_distribution<int> distP(1, 20);
     std::uniform_int_distribution<int> distW(1, 10);
     std::uniform_int_distribution<int> distUi(10, 60);
