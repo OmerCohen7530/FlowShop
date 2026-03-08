@@ -6,7 +6,7 @@
 #include <numeric>
 #include <unordered_set>
 #include <stdexcept>
-#include "FlowShopWSPTMCI.cpp" // שימוש בקופסה השחורה הקיימת
+#include "FlowShopWSPTMCI.cpp"
 
 namespace flowshop_ext {
 
@@ -30,14 +30,11 @@ NaiveResult solveDP(const std::vector<flowshop::Job>& allJobs,
                     const std::vector<int>& outsourcingCosts,
                     int m, int U);
 
-// פונקציית מעטפת שמריצה את ה-MCI ומחזירה רק את הערך המספרי
-// מקבלת את הווקטור של המטלות ואת מספר המכונות m
+
 long long getObjectiveOnly(const std::vector<flowshop::Job>& jobs, int m) {
     if (jobs.empty()) return 0;
     
-    // שליחה למימוש הקיים בקופסה השחורה
-    // אנחנו משתמשים ב-solveWSPT_MCI ישירות כדי להימנע מהדפסות
-    // dbgOut מועבר כ-ostream ריק (null)
+
     std::ostream nullOut(nullptr);
     flowshop::Solution sol = flowshop::solveWSPT_MCI(jobs, m, false, nullOut);
     
@@ -153,8 +150,6 @@ NaiveResult solveDP(const std::vector<flowshop::Job>& allJobs,
     return result;
 }
 
-// --- אלגוריתם נאיבי (Brute Force) ---
-// עובר על כל 2^n האפשרויות ומחזיר את ה-Objective המינימלי
 long long solveNaive(const std::vector<flowshop::Job>& allJobs, 
                    const std::vector<int>& outsourcingCosts, 
                    int m, int U) {
